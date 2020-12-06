@@ -23,9 +23,6 @@ optional arguments:
     
     dhcptranslate dhcpd.conf includes.conf > csvoutputfile
 
-## Notes
-This only supports Juniper devices so far. Cisco support coming soon.
-
 ## Support
 Bugs, questions, and other issues can be directed to the project's [issues page](https://github.com/dogoncouch/dhcptranslate/issues) on GitHub, or emailed to [dogoncouch@dogoncouch.net](mailto:dogoncouch@dogoncouch.net).
 
