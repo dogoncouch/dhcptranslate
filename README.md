@@ -3,9 +3,9 @@
 ## Usage
 Parses DHCP reservations from an ISC DHCP config file, and translates any reservations made by DNS name to an IP address. Outputs CSV format to the command line in the following format, sorted by `ip_address`:
 ```
-ip_address,MAC_address,hostname,reservation,original_config_line
+ip_address,MAC_address,"MAC_vendor",hostname,reservation,original_config_line
 ```
-The `reservation` field contains what was originally defined by the reservation, whether it is by IP address or DNS name. The `ip_address` field will show `0.0.0.0` if DNS resolution failed.The last field is the original config line in its entirety.
+The `reservation` field contains what was originally defined by the reservation, whether it is by IP address or DNS name. The `ip_address` field will show `0.0.0.0` if DNS resolution failed. `MAC_vendor` is in quotes, since it sometimes contains commas. The last field is the original config line in its entirety.
 
 ### Options
 ```

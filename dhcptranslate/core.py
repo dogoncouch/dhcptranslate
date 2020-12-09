@@ -71,7 +71,7 @@ class DHCPTranslateCore:
 
         csvlinessorted = sorted(csvlines, key=lambda x: IPv4Address(x[0]))
 
-        print('ip_address,MAC_address,hostname,' + \
+        print('ip_address,MAC_address,MAC_vendor,hostname,' + \
                 'reservation,original_config_line')
         for line in csvlinessorted:
             print(','.join(line))
