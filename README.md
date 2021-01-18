@@ -17,6 +17,7 @@ positional arguments:
 optional arguments:
   -h, --help  show this help message and exit
   --version   show program's version number and exit
+  -c, --config  Output in config format with IP address
 ```
 
 ## Examples
