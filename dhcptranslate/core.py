@@ -46,6 +46,9 @@ class DHCPTranslateCore:
         self.arg_parser.add_argument('files',
                 action = 'store', metavar = 'FILE', nargs = '+',
                 help = 'set a dhcp conf file to parse')
+        self.arg_parser.add_argument('-c', '--config',
+                action = 'store_true',
+                help = 'Output in config format with IP address')
 
         self.args = self.arg_parser.parse_args()
 
@@ -63,18 +66,28 @@ class DHCPTranslateCore:
             for line in lines:
                 conflines.append(line)
 
-        csvlines = []
-        for line in conflines:
-            csvline = dhcptranslate.utils.translateline(line)
-            if csvline:
-                csvlines.append(csvline)
+        if self.args.config:
+            newconflines = []
+            for line in conflines:
+                newconfline = dhcptranslate.utils.translatetoconfig(line)
+                if newconfline:
+                    newconflines.append(newconfline)
+            for line in newconflines:
+                print(line)
 
-        csvlinessorted = sorted(csvlines, key=lambda x: IPv4Address(x[0]))
+        else:
+            csvlines = []
+            for line in conflines:
+                csvline = dhcptranslate.utils.translateline(line)
+                if csvline:
+                    csvlines.append(csvline)
 
-        print('ip_address,MAC_address,MAC_vendor,hostname,' + \
-                'reservation,original_config_line')
-        for line in csvlinessorted:
-            print(','.join(line))
+            csvlinessorted = sorted(csvlines, key=lambda x: IPv4Address(x[0]))
+
+            print('ip_address,MAC_address,MAC_vendor,hostname,' + \
+                    'reservation,original_config_line')
+            for line in csvlinessorted:
+                print(','.join(line))
 
 
     def run_script(self):
